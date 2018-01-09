@@ -12,6 +12,17 @@ def create_list(a_file):
     return a_list
 
 
+def validate_selection(choices):
+    if choices is None:
+        choices = 3
+    elif choices >= last_index:
+        print('Selection larger than list size. Setting to max')
+        choices = last_index
+    else:
+        choices = choices
+    return choices
+
+
 # Select 4 random values from item_array
 def get_unique_items(choices, last):
     numbers = random.sample(range(0, last), choices)
@@ -40,14 +51,6 @@ random_number = []
 item_list = []
 item_list = create_list(item_file)
 last_index = len(item_list) - 1
-
-if number_of_items is None:
-    number_of_items = 3
-elif number_of_items >= last_index:
-    print('Selection larger than list size. Setting to max')
-    number_of_items = last_index
-else:
-    number_of_items = number_of_items
-
+number_of_items = validate_selection(number_of_items)
 random_number = get_unique_items(number_of_items, last_index)
 print_selected_items(random_number, item_list)
