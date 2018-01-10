@@ -12,12 +12,12 @@ def create_list(a_file):
     return a_list
 
 
-def validate_selection(choices):
+def validate_selection(choices, last):
     if choices is None:
         choices = 3
-    elif choices >= last_index:
+    elif choices >= last:
         print('Selection larger than list size. Setting to max')
-        choices = last_index
+        choices = last
     else:
         choices = choices
     return choices
@@ -51,6 +51,6 @@ random_number = []
 item_list = []
 item_list = create_list(item_file)
 last_index = len(item_list) - 1
-number_of_items = validate_selection(number_of_items)
+number_of_items = validate_selection(number_of_items, last_index)
 random_number = get_unique_items(number_of_items, last_index)
 print_selected_items(random_number, item_list)
