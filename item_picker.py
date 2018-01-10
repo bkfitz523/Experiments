@@ -1,15 +1,6 @@
 import argparse
-import random
 
-
-# Create list from file
-def create_list(a_file):
-    a_list = []
-    with open(a_file) as f:
-        for line in f:
-            a_list.append(line)
-    a_list = [x.strip() for x in a_list]
-    return a_list
+import modules
 
 
 def validate_selection(choices, last):
@@ -21,12 +12,6 @@ def validate_selection(choices, last):
     else:
         choices = choices
     return choices
-
-
-# Select 4 random values from item_array
-def get_unique_items(choices, last):
-    numbers = random.sample(range(0, last), choices)
-    return numbers
 
 
 # Print random items from a list
@@ -49,8 +34,8 @@ else:
 
 random_number = []
 item_list = []
-item_list = create_list(item_file)
+item_list = modules.create_list(item_file)
 last_index = len(item_list) - 1
 number_of_items = validate_selection(number_of_items, last_index)
-random_number = get_unique_items(number_of_items, last_index)
+random_number = modules.get_unique_items(number_of_items, last_index)
 print_selected_items(random_number, item_list)
