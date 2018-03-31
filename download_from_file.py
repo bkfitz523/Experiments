@@ -1,8 +1,7 @@
 import argparse
 import modules
-import os
-import urllib.request as url_request
-
+import os, sys
+import urllib.request as url_download
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-f', help='File with list of items')
@@ -13,35 +12,32 @@ else:
     item_file = args.f
 
 
-def download_from_file(folder_name, url, length, img_name, digits):
-    # Create directory if does not exist
-
-    folder = 'download\\{0}'.format(folder_name)
+def download_list_of_items(list_of_items, folder, base_name, digits):
+    # list
+    # path
 
     if not os.path.exists(folder):
         os.makedirs(folder)
 
-    # Loop to download images
-    for x in range(0, length):
+    last_index = len(list_of_items)
+
+    for x in range(0, last_index):
         num = str(x).zfill(digits)
-        img_url = url[x].format(num)
-        img_name
-        try:
-            print(img_url.format(num))
-            print(img_name.format(num))
-            url_request.urlretrieve(img_url, folder + '\\' + img_name.format(num))
-        except:
-            print('Not found. Continuing to next item...')
-            continue
+        print("Downloading Item "+num)
+        url_download.urlretrieve(list_of_items[x], folder + base_name + num + ".jpg")
 
 
 download_items = modules.create_list(item_file)
-list_size = len(download_items) #- 1
+# path = "download\\cw"
+# print(download_items[0])
+# url_download.urlretrieve(download_items[0], path + "\\cw_01.jpg")
 
-download_from_file(
-    folder_name='Pokemon',
-    url=download_items,
-    length=list_size,
-    img_name='pokemon',
-    digits=3
+download_list_of_items(
+    list_of_items=download_items,
+    folder="download\\mm_rs\\",
+    base_name="mm_rs_01_",
+    digits=2
 )
+
+print('Completed')
+sys.exit(0)

@@ -1,5 +1,4 @@
 import argparse
-
 import modules
 
 
@@ -39,3 +38,10 @@ last_index = len(item_list) - 1
 number_of_items = validate_selection(number_of_items, last_index)
 random_number = modules.get_unique_items(number_of_items, last_index)
 print_selected_items(random_number, item_list)
+
+'''
+folder = 'download\\{0}'.format(folder_name)
+
+    if not os.path.exists(folder):
+        os.makedirs(folder)
+'''
